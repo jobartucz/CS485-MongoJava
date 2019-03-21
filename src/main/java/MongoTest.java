@@ -19,6 +19,8 @@ import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
 
+// most of this code and more examples can be found at:
+// https://mongodb.github.io/mongo-java-driver/3.10/driver/getting-started/quick-start/
 
 public class MongoTest {
 
