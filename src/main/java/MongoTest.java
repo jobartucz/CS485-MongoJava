@@ -1,15 +1,12 @@
-import com.mongodb.ConnectionString;
+import com.mongodb.*;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
-
-import com.mongodb.ServerAddress;
 
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 
 import org.bson.Document;
 import java.util.Arrays;
-import com.mongodb.Block;
 
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
@@ -44,7 +41,7 @@ public class MongoTest {
                 .append("height", 70)
                 .append("deceased", false);
 
-        collection.insertOne(doc);
+        // collection.insertOne(doc);
 
         System.out.println("Number of documents NOW in collection: " + collection.countDocuments());
 
@@ -52,10 +49,17 @@ public class MongoTest {
         MongoCursor<Document> cursor = collection.find().iterator();
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next().toJson());
+                // System.out.println(cursor.next().toJson());
+                Document myobj = cursor.next();
+                String myName = (String) myobj.get("name");
+                int age = (int) myobj.get("age");
+                System.out.println("Name = " + myName);
+                System.out.println("Age = " + age);
             }
         } finally {
             cursor.close();
         }
+
+
     }
 }
